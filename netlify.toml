@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# SPA: qualquer rota (incluindo a rota oculta do admin) cai no index.html
+# e o React Router resolve no client. Isso é o que faz a rota do painel
+# não aparecer em nenhum sitemap/crawler — ela só existe no roteador JS.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
