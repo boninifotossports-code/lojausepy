@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-usepy-cream text-usepy-ink font-body antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-usepy-bark;
+  }
+}
