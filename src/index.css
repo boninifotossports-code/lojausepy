@@ -8,5 +8,23 @@
   }
   h1, h2, h3, h4 {
     @apply font-display text-usepy-bark;
+    letter-spacing: 0.01em;
+  }
+  a {
+    @apply transition-colors;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-usepy-copper text-white py-3 px-6 rounded-full text-sm tracking-wide
+      hover:bg-usepy-gold transition-colors disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+  .btn-outline {
+    @apply border border-usepy-copper text-usepy-copper py-3 px-6 rounded-full text-sm tracking-wide
+      hover:bg-usepy-copper hover:text-white transition-colors disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+  .section-label {
+    @apply font-display italic text-usepy-copper text-lg;
   }
 }
