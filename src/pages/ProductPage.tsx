@@ -83,9 +83,9 @@ export default function ProductPage() {
     <div>
       <Header categories={categories} />
 
-      <div className="max-w-5xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-10">
+      <div className="max-w-5xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-12">
         <div>
-          <div className="aspect-[3/4] bg-usepy-sand mb-3 overflow-hidden">
+          <div className="aspect-[3/4] bg-usepy-sand mb-3 overflow-hidden rounded shadow-soft">
             <img
               src={productImageUrl(images[activeImage]?.storage_path || null)}
               alt={product.name}
@@ -98,7 +98,7 @@ export default function ProductPage() {
                 <button
                   key={img.id}
                   onClick={() => setActiveImage(i)}
-                  className={`w-16 h-16 bg-usepy-sand overflow-hidden border ${
+                  className={`w-16 h-16 bg-usepy-sand overflow-hidden rounded border ${
                     i === activeImage ? "border-usepy-copper" : "border-transparent"
                   }`}
                 >
@@ -109,10 +109,12 @@ export default function ProductPage() {
           )}
         </div>
 
-        <div>
-          <h1 className="text-3xl text-usepy-bark mb-2">{product.name}</h1>
-          <p className="text-2xl text-usepy-copper mb-4">{centsToBRL(price)}</p>
-          {product.description && <p className="text-usepy-ink/70 mb-6">{product.description}</p>}
+        <div className="md:sticky md:top-24 self-start">
+          <h1 className="text-4xl text-usepy-bark mb-2 leading-tight">{product.name}</h1>
+          <p className="text-2xl text-usepy-copper mb-5">{centsToBRL(price)}</p>
+          {product.description && (
+            <p className="text-usepy-ink/70 mb-6 leading-relaxed">{product.description}</p>
+          )}
 
           {sizes.length > 0 && (
             <div className="mb-4">
@@ -122,10 +124,10 @@ export default function ProductPage() {
                   <button
                     key={size}
                     onClick={() => pickVariant(size, selectedVariant?.color ?? colors[0] ?? null)}
-                    className={`border px-3 py-1.5 text-sm ${
+                    className={`border rounded-full px-4 py-1.5 text-sm transition-colors ${
                       selectedVariant?.size === size
                         ? "border-usepy-copper bg-usepy-copper text-white"
-                        : "border-usepy-sand"
+                        : "border-usepy-line hover:border-usepy-copper"
                     }`}
                   >
                     {size}
@@ -143,10 +145,10 @@ export default function ProductPage() {
                   <button
                     key={color}
                     onClick={() => pickVariant(selectedVariant?.size ?? sizes[0] ?? null, color)}
-                    className={`border px-3 py-1.5 text-sm ${
+                    className={`border rounded-full px-4 py-1.5 text-sm transition-colors ${
                       selectedVariant?.color === color
                         ? "border-usepy-copper bg-usepy-copper text-white"
-                        : "border-usepy-sand"
+                        : "border-usepy-line hover:border-usepy-copper"
                     }`}
                   >
                     {color}
@@ -159,7 +161,7 @@ export default function ProductPage() {
           <button
             onClick={handleAddToCart}
             disabled={!selectedVariant || selectedVariant.stock_qty === 0}
-            className="w-full bg-usepy-copper text-white py-3 rounded-full disabled:opacity-40 hover:bg-usepy-gold transition-colors"
+            className="btn-primary w-full"
           >
             {!selectedVariant || selectedVariant.stock_qty === 0
               ? "Esgotado"
@@ -173,6 +175,11 @@ export default function ProductPage() {
           >
             Ver sacola
           </button>
+
+          <div className="border-t border-usepy-line mt-8 pt-5 text-xs text-usepy-ink/60 space-y-1.5">
+            <p>✦ Frete calculado pelo seu CEP no checkout</p>
+            <p>✦ Pagamento online seguro ou combine pelo WhatsApp</p>
+          </div>
         </div>
       </div>
 
